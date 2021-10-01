@@ -1,0 +1,206 @@
+
+mysql> create database EMP_PAYROLL;
+Query OK, 1 row affected (0.00 sec)
+
+UC - One:-
+
+mysql> show databases;
++----------------------+
+| Database             |
++----------------------+
+| address_book_service |
+| EMP_PAYROLL          |
+| information_schema   |
+| mysql                |
+| performance_schema   |
+| sys                  |
++----------------------+
+6 rows in set (0.01 sec)
+
+mysql> use emp_payroll;
+Database changed
+mysql> 
+
+UC-Two:-
+
+
+mysql> create table employee_payroll(empId int(20), empName varchar(80), empSalary int(30), dateOfJoin date);
+Query OK, 0 rows affected, 2 warnings (0.04 sec)
+
+mysql> show tables;
++-----------------------+
+| Tables_in_emp_payroll |
++-----------------------+
+| employee_payroll      |
++-----------------------+
+1 row in set (0.01 sec)
+
+mysql> describe employee_ppayroll;
+ERROR 1146 (42S02): Table 'emp_payroll.employee_ppayroll' doesn't exist
+mysql> describe employee_payroll;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| empId      | int         | YES  |     | NULL    |       |
+| empName    | varchar(80) | YES  |     | NULL    |       |
+| empSalary  | int         | YES  |     | NULL    |       |
+| dateOfJoin | date        | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+
+
+UC-Three:-
+
+
+mysql> insert into employee_payroll values('001' , 'Shital salunkhe', '7600', '2022-11-10');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into employee_payroll values('002' , 'preetham', '79000', '2022-1-1');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into employee_payroll values('003' , 'mahesh mishra', '24000', '2022-
+Query OK, 1 row affected (0.00 sec)
+
+
+UC - four:-
+
+
+mysql> select * from employee_payroll;
++-------+-----------------+-----------+------------+
+| empId | empName         | empSalary | dateOfJoin |
++-------+-----------------+-----------+------------+
+|     1 | Shital salunkhe |      7600 | 2022-11-10 |
+|     2 | preetham        |     79000 | 2022-01-01 |
+|     3 | mahesh mishra   |     24000 | 2022-01-10 |
++-------+-----------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+
+UC- FIVE:-
+
+
+mysql> select empSalary from employee_payroll where empName = 'Shital salunkhe';
+
++-----------+
+| empSalary |
++-----------+
+|      7600 |
++-----------+
+1 row in set (0.00 sec)
+
+
+UC- SIX:-
+
+
+mysql> select * from employee_payroll;
++-------+-----------------+-----------+------------+
+| empId | empName         | empSalary | dateOfJoin |
++-------+-----------------+-----------+------------+
+|     1 | Shital salunkhe |      7600 | 2022-11-10 |
+|     2 | preetham        |     79000 | 2022-01-01 |
+|     3 | mahesh mishra   |     24000 | 2022-01-10 |
++-------+-----------------+-----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add column fathername char(10);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_payroll;
++-------+-----------------+-----------+------------+------------+
+| empId | empName         | empSalary | dateOfJoin | fathername |
++-------+-----------------+-----------+------------+------------+
+|     1 | Shital salunkhe |      7600 | 2022-11-10 | NULL       |
+|     2 | preetham        |     79000 | 2022-01-01 | NULL       |
+|     3 | mahesh mishra   |     24000 | 2022-01-10 | NULL       |
++-------+-----------------+-----------+------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee_payroll add column gender char(10);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee_roll;
+ERROR 1146 (42S02): Table 'emp_payroll.employee_roll' doesn't exist
+mysql> select * from employee_payroll;
++-------+-----------------+-----------+------------+------------+--------+
+| empId | empName         | empSalary | dateOfJoin | fathername | gender |
++-------+-----------------+-----------+------------+------------+--------+
+|     1 | Shital salunkhe |      7600 | 2022-11-10 | NULL       | NULL   |
+|     2 | preetham        |     79000 | 2022-01-01 | NULL       | NULL   |
+|     3 | mahesh mishra   |     24000 | 2022-01-10 | NULL       | NULL   |
++-------+-----------------+-----------+------------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender = 'female' where empName = 'Shital salunkhe';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++-------+-----------------+-----------+------------+------------+--------+
+| empId | empName         | empSalary | dateOfJoin | fathername | gender |
++-------+-----------------+-----------+------------+------------+--------+
+|     1 | Shital salunkhe |      7600 | 2022-11-10 | NULL       | female |
+|     2 | preetham        |     79000 | 2022-01-01 | NULL       | NULL   |
+|     3 | mahesh mishra   |     24000 | 2022-01-10 | NULL       | NULL   |
++-------+-----------------+-----------+------------+------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> update employee_payroll set gender = 'male' where empName = 'mahesh mishra';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set gender = 'male' where empName = 'preetham';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from employee_payroll;
++-------+-----------------+-----------+------------+------------+--------+
+| empId | empName         | empSalary | dateOfJoin | fathername | gender |
++-------+-----------------+-----------+------------+------------+--------+
+|     1 | Shital salunkhe |      7600 | 2022-11-10 | NULL       | female |
+|     2 | preetham        |     79000 | 2022-01-01 | NULL       | male   |
+|     3 | mahesh mishra   |     24000 | 2022-01-10 | NULL       | male   |
++-------+-----------------+-----------+------------+------------+--------+
+3 rows in set (0.00 sec)
+
+
+
+
+UC-Seven:-
+
+
+mysql> select min(empSalary) from employee_payroll where gender = 'male';
++----------------+
+| min(empSalary) |
++----------------+
+|          24000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select sum(empSalary) from employee_payroll where gender = 'male';
++----------------+
+| sum(empSalary) |
++----------------+
+|         103000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select avg(empSalary) from employee_payroll where gender = 'male';
++----------------+
+| avg(empSalary) |
++----------------+
+|     51500.0000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> select max(empSalary) from employee_payroll where gender = 'male';
++----------------+
+| max(empSalary) |
++----------------+
+|          79000 |
++----------------+
+1 row in set (0.00 sec)
+
+mysql> 
